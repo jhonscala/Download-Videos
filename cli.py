@@ -40,6 +40,12 @@ def parse_arguments():
         action="store_true",
         help="Baixar apenas o áudio (MP3/M4A)"
     )
+    parser.add_argument(
+        "-w", "--workers",
+        type=int,
+        default=3,
+        help="Quantidade de downloads simultâneos (padrão: 3)"
+    )
     return parser.parse_args()
 
 
@@ -66,12 +72,14 @@ def progress_printer(data):
     if status == "downloading":
         percent = data.get("percent", 0)
         speed = (data.get("speed") or 0) / (1024 * 1024)
-        eta = data.get("eta") or 0
-        m, s = divmod(int(eta), 60)
-        sys.stdout.write(f"\r  -> Progresso: {percent:5.1f}% | Velocidade: {speed:5.2f} MB/s | Restante: {m:02d}:{s:02d}   ")
+        completed = data.get("completed", 0)
+        total = data.get("total", 0)
+        active_count = data.get("active_count", 0)
+        active_detail = data.get("active_detail", "")
+        sys.stdout.write(f"\r  ⚡ [{active_count} ativos] Concluídos: {completed}/{total} | Progresso: {percent:5.1f}% | Velocidade: {speed:5.2f} MB/s   ")
         sys.stdout.flush()
     elif status == "finished":
-        sys.stdout.write("\r  -> Concluído! Finalizando processamento...                    \n")
+        sys.stdout.write("\r  ✔ Concluído! Finalizando todos os arquivos...                                          \n")
         sys.stdout.flush()
 
 
@@ -119,6 +127,7 @@ def main():
         output_dir=args.output,
         quality=args.quality,
         format_type=format_type,
+        max_workers=args.workers,
         progress_callback=progress_printer,
         log_callback=lambda msg, lvl: print(f"[{lvl}] {msg}")
     )

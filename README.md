@@ -76,9 +76,19 @@ Ou dê um duplo clique em `csharp_version\Iniciar_CSharp.bat`.
 
 ## ✨ Recursos do Sistema
 
+- **Download Simultâneo em Lote (Multi-threading)**:
+  - Baixe múltiplos vídeos ao mesmo tempo (1, 2, 3 ou até 5 vídeos em paralelo).
+  - Aceleração por fragmentos paralelos (`concurrent_fragment_downloads: 4`) para extrair a máxima velocidade da sua conexão.
+  - Buffer de alta velocidade de 10 MB para transferências contínuas sem engasgos.
+  - Monitoramento de velocidade total combinada em tempo real (MB/s).
 - **Nomeação Automática**: O nome do arquivo no disco é exatamente o título original do vídeo no YouTube.
 - **Sanitização de Caracteres**: Caracteres especiais proibidos no Windows (`\ / : * ? " < > |`) são tratados automaticamente para evitar erros.
 - **Download em Lote**: Baixe dezenas ou centenas de links de uma só vez.
+- **Integração com Google Drive (Nuvem e Desktop)**:
+  - **Upload direto via API**: Envia os vídeos para a nuvem do Google Drive automaticamente com progresso resumável.
+  - **Criação de pasta automática**: Cria a pasta "YouTube Downloads" (ou com o nome que você definir) na sua conta.
+  - **Limpeza de disco**: Opção para excluir a cópia local do computador após o upload com sucesso no Drive.
+  - **Suporte a pastas sincronizadas**: Botão rápido para selecionar a pasta local do Google Drive Desktop ou OneDrive.
 - **Barra de Progresso em Tempo Real**: Exibe porcentagem, velocidade de download (MB/s) e tempo restante (ETA).
 - **Controle de Cancelamento**: Botão para cancelar a qualquer momento sem corromper arquivos.
 - **Suporte a FFmpeg**: FFmpeg integrado para combinar vídeo de alta resolução (1080p, 4K) e áudio em MP4 perfeito ou converter para MP3.
